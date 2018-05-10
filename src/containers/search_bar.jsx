@@ -16,17 +16,23 @@ export default class SearchBar extends React.Component {
 		console.log(event.target.value) ;
 	}
 
+	onFormSubmit(event){
+		event.preventDefault() ;
+	}
+
 	render(){
-		return <form className="input-group">
-			<input
-				onChange = {this.onInputChange}
-				className='form-control' 
-				placeholder = "Selecione a Cidade"
-				value={this.state.term}
-			 />
-			<span className="input-group-btn">
-				<button type="submit" className="btn btn-secondary">Buscar</button>
-			</span>
-		</form>
+		return (
+			<form onSubmit={this.onFormSubmit} className="input-group">
+					<input
+						onChange = {this.onInputChange}
+						className='form-control' 
+						placeholder = "Selecione a Cidade"
+						value={this.state.term}
+					 />
+					<span className="input-group-btn">
+						<button type="submit" className="btn btn-secondary">Buscar</button>
+					</span>
+				</form>
+		)
 	}
 }
