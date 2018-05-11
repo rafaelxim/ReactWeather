@@ -1,7 +1,8 @@
 import React from 'react' ; 
 import _ from 'lodash' ;
 import { connect } from 'react-redux' ;
-import Chart from '../components/chart' ;
+import Chart from '../components/chart' ; 
+import GoogleMap from '../components/google_map' ;
 
 class WeatherList extends React.Component{
 
@@ -25,11 +26,15 @@ class WeatherList extends React.Component{
 				const mediaTemp = parseInt(_.sum(temperatures) / temperatures.length) ; 
 				const mediaPressoes = parseInt(_.sum(pressoes) / pressoes.length) ; 
 				const mediaUmidades = parseInt(_.sum(umidades) / umidades.length) ; 
-				
+
+				const lon = cityData.city.coord.lon ;
+				const lat = cityData.city.coord.lat ;
 								
-				return (
+				return ( 
 					<tr key = {cityData.city.name} >
-						<td>{cityData.city.name}</td>
+						<td>
+							<GoogleMap lat = {lat} lon = {lon} />							
+						</td>
 						<td>
 							<Chart data = {temperatures} color="orange" />
 							<div>{ `${mediaTemp} °C` }</div>
